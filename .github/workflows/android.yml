@@ -29,10 +29,19 @@ jobs:
       - name: Generate wrapper
         run: gradle wrapper
 
+      # 🔥 IMPORTANT FIX: force git to see changes
+      - name: Show changes
+        run: git status
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Restore Gradle wrapper"
           title: "Restore Gradle wrapper"
+          body: "Auto-generated Gradle wrapper restore"
           branch: fix/gradle-wrapper
           base: main
+          add-paths: |
+            gradlew
+            gradlew.bat
+            gradle/wrapper/
