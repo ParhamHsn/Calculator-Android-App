@@ -3,6 +3,10 @@ name: Fix Gradle Wrapper
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -10,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -28,5 +34,10 @@ jobs:
         with:
           commit-message: "Restore Gradle wrapper"
           title: "Restore Gradle wrapper"
+          body: "Auto-generated Gradle wrapper restore"
           branch: fix/gradle-wrapper
           base: main
+          add-paths: |
+            gradlew
+            gradlew.bat
+            gradle/wrapper/
