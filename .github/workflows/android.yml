@@ -34,10 +34,5 @@ jobs:
         with:
           commit-message: "Restore Gradle wrapper"
           title: "Restore Gradle wrapper"
-          body: "Auto-generated Gradle wrapper restore"
           branch: fix/gradle-wrapper
           base: main
-          add-paths: |
-            gradlew
-            gradlew.bat
-            gradle/wrapper/
