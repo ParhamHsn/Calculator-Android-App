@@ -1,4 +1,4 @@
-name: Fix Gradle Wrapper
+name: Fix Gradle Wrapper + Build APK
 
 on:
   workflow_dispatch:
@@ -29,11 +29,16 @@ jobs:
       - name: Generate wrapper
         run: gradle wrapper
 
-      # 🔥 IMPORTANT FIX: force git to see changes
-      - name: Show changes
-        run: git status
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
 
-      - name: Create Pull Request
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+
+      - name: Create Pull Request (wrapper fix only)
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Restore Gradle wrapper"
