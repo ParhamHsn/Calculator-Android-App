@@ -103,29 +103,82 @@ fi
 
 # Increase the maximum file descriptors if we can.
 if ! "$cygwin" && ! "$darwin" && ! "$msys" ; then
-    case $( ulimit -S -n ) in  #(
-      (*unlimited*)
+    case $( ulimit -S -n ) in
+      *unlimited*)
         ;;
-      (*)
-        if [ -writable-x /proc/self/fd ] ; then
-            ulimit -n $( grep -occ max /proc/self/limits | head -1 ) || true
-        fi
+      *)
+        ulimit -n "$MAX_FD" ||
+            warn "Could not set maximum file descriptor limit to $MAX_FD"
     esac
 fi
 
-# Escape application args
-quote_args()
-{
+# Collect all arguments for the java command, stacking in reverse order:
+#   * args from the command line
+#   * the main class name
+#   * -classpath
+#   * -D...=... system properties
+#   * modules (only explicitly set)
+#
+# Because of JDK8 the shell script args will be regenerated from these JSON files
+# in the current directory.
+ARGS=()
+
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    APP_HOME_RELATIVE=$( cygpath --path --mixed "$APP_HOME_RELATIVE" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+    # Now convert the arguments - kludge to limit ourselves to /bin/sh
     for arg do
-        if expr "$arg" : ^-D >/dev/null
+        if
+            case $arg in
+                -*)   false ;;
+                /?*)  t=${arg#/} t=/${t%%/*}
+                      [ -e "$t" ] ;;
+                *)    false ;;
+            esac
         then
-            arg="-D$(printf '%s\n' "$arg" | sed -e 's/^-D//' -e 's/$//' | sed -e 's/\\/\\\\/g' -e 's/'/\\\'/g' -e 's/$//' -e 's/"/\\\\\\\\" /' -e 's/$//' | tr -d '\n')"
+            arg=$( cygpath --path --mixed "$arg" )
         fi
-        printf '%s\n' "$arg" | sed -e 's/$//' -e 's/\\/\\\\/g' -e 's/'/\\\'/g' -e 's/$//' | tr -d '\n' | xargs printf '"%%s" '
+        ARGS+=( "$arg" )
     done
-}
-exec "$JAVACMD" \
-        $DEFAULT_JVM_OPTS \
+fi
+
+# Collect all arguments for the java command;
+#   * $DEFAULT_JVM_OPTS, $JAVA_OPTS, and $GRADLE_OPTS can contain fragments of
+#     shell script including quotes and variable substitutions, so put them in
+#     double quotes to make sure that they get re-expanded; and
+#   * put everything else in single quotes, so that it's not re-expanded.
+
+set -- \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
         -classpath "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
         org.gradle.wrapper.GradleWrapperMain \
         "$@"
+
+# Use "xargs" to parse quoted args.
+#
+# With -n1 it outputs one arg per line, with -0 it uses null characters for line endings.
+# In Bash we could simply go:
+#
+#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+#   set -- "${ARGS[@]}" "$@"
+#
+# but POSIX shell has neither arrays nor command substitution, so instead we
+# post-process each arg (as a line of input to sed) to backslash-escape any
+# single quotes in it.
+#
+# (The reason we do this with the ````backtick```` format is that the echo
+# command interprets backslashes.)
+# Also sequences of backslashes before single quotes are escaped, because
+# the echo command interprets them.
+#
+# (However, single-quoted strings cannot contain backslashes anyway, so this
+# does nothing but consume code.)
+#
+# See https://lists.gnu.org/archive/html/libc-alpha/2010-12/msg00179.html for more info.
+
+exec "$JAVACMD" "$@"
