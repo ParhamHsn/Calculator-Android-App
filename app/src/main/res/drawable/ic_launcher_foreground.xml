@@ -1,0 +1,72 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer calculator body with elegant thin border and glowing face -->
+    <!-- Center is 54, 54. Size 56x70, from X=26 to 82, Y=19 to 89 -->
+    <path
+        android:fillColor="#2D3045"
+        android:strokeColor="#FF8F00"
+        android:strokeWidth="1.5"
+        android:pathData="M 32,24 h 44 a 6,6 0 0 1 6,6 v 50 a 6,6 0 0 1 -6,6 H 32 a 6,6 0 0 1 -6,-6 V 30 a 6,6 0 0 1 6,-6 Z" />
+    
+    <!-- Calculator screen inside body: X=32 to 76, Y=30 to 44 -->
+    <path
+        android:fillColor="#151722"
+        android:pathData="M 34,29 h 40 a 2,2 0 0 1 2,2 v 10 a 2,2 0 0 1 -2,2 H 34 a 2,2 0 0 1 -2,-2 v -10 a 2,2 0 0 1 2,-2 Z" />
+
+    <!-- A simulated glowing screen indicator -->
+    <path
+        android:fillColor="#FF8F00"
+        android:pathData="M 64,33 h 6 v 1.5 h -6 z" />
+
+    <!-- Buttons represented as crisp, modern blocks -->
+    <!-- Operator Buttons on the right Column -->
+    <!-- Button top right (divide): X=66 to 76, Y=48 to 56 -->
+    <path
+        android:fillColor="#FF8F00"
+        android:pathData="M 66,48 h 8 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -8 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <!-- Button middle right (multiply): X=66 to 76, Y=58 to 66 -->
+    <path
+        android:fillColor="#FF8F00"
+        android:pathData="M 66,58 h 8 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -8 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <!-- Button bottom right (equals): X=66 to 76, Y=68 to 78 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 66,68 h 8 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -8 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+
+    <!-- Regular number buttons (muted grey) -->
+    <!-- Row 1: X=32 to 42, 44 to 54, 56 to 66 -->
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 34,48 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 44,48 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 54,48 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+
+    <!-- Row 2 -->
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 34,58 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 44,58 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 54,58 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+
+    <!-- Row 3 -->
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 34,68 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 44,68 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+    <path
+        android:fillColor="#4E5370"
+        android:pathData="M 54,68 h 6 a 1.5,1.5 0 0 1 1.5,1.5 v 4 a 1.5,1.5 0 0 1 -1.5,1.5 h -6 a 1.5,1.5 0 0 1 -1.5,-1.5 v -4 a 1.5,1.5 0 0 1 1.5,-1.5 Z" />
+</vector>
